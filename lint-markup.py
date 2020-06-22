@@ -13,6 +13,13 @@ for dirName, subdirList, fileList in os.walk(rootDir):
     for fileName in fileList:
         with open(f'{dirName}/{fileName}') as f:
             soup = BeautifulSoup(f, 'html.parser')
-            main_content = soup.select('#main-content')[0].prettify()
+            main_content = soup.select('#main-content')[0]
 
-            print(template.render(main_content=main_content))
+            for a in main_content.find_all('a', href=True):
+                if a['href'].startswith("http"):
+                    a.unwrap()
+
+            for a in main_content.find_all('a', href=False):
+                a.unwrap()
+
+            print(template.render(main_content=main_content.prettify()))
