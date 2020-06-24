@@ -23,8 +23,6 @@ Todo:
 Done:
 - Rename sibling documents
 - Remove bad nodes
-
-Todo:
 - Remove soft-404 content
 
 ## Lint content

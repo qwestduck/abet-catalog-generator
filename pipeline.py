@@ -1,8 +1,30 @@
+#!/usr/bin/python3
+
 import os
 import shutil
 
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader
+
+def file_contains_string(fileName, string):
+    with open(fileName) as f:
+        if string in f.read():
+            return True
+
+    return False
+
+def purge_404_content(root):
+    pattern = 'Page not found'
+
+    counter = 0
+
+    for dirName, subdirList, fileList in os.walk(root):
+        for fileName in fileList:
+            if file_contains_string(f'{dirName}/{fileName}', pattern):
+                counter = counter + 1
+                os.remove(os.path.join(dirName, fileName))
+
+    print(f'Removed {counter} soft-404 content pages')
 
 def squash_index():
     rootDir = '.'
@@ -68,6 +90,7 @@ def lint_markup():
                 f.write(template.render(main_content=main_content.prettify()))
 
 def main():
+    purge_404_content('.cache/catalog.olemiss.edu')
     squash_index()
     lint_markup()
 
