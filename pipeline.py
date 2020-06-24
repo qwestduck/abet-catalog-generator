@@ -6,6 +6,8 @@ from jinja2 import Environment, FileSystemLoader
 
 def squash_index():
     rootDir = '.'
+    os.chdir('.cache/catalog.olemiss.edu')
+    print(f'cwd={os.getcwd()}')
 
     # Remove bad nodes
     bad_files = ['robots.txt.html']
@@ -28,14 +30,24 @@ def squash_index():
 
                 os.rename(sibling_name_old, sibling_name_new)
 
+    os.chdir('..')
+
 def lint_markup():
     rootDir = '.'
+    print(f'cwd={os.getcwd()}')
+
+    file_counter = 0
 
     env = Environment(loader=FileSystemLoader('../templates'))
     template = env.get_template('document.j2')
 
     for dirName, subdirList, fileList in os.walk(rootDir):
         for fileName in fileList:
+            file_counter = file_counter + 1
+            if file_counter == 100:
+                file_counter = 0
+                print(f'Periodic render update: {dirName}/{fileName}')
+
             with open(f'{dirName}/{fileName}') as f:
                 soup = BeautifulSoup(f, 'html.parser')
 
@@ -50,7 +62,8 @@ def lint_markup():
             for a in main_content.find_all('a', href=False):
                 a.unwrap()
 
-            print(template.render(main_content=main_content.prettify()))
+            with open(f'{dirName}/{fileName}', 'w') as f:
+                f.write(template.render(main_content=main_content.prettify()))
 
 def main():
     squash_index()
