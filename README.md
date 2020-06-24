@@ -24,6 +24,9 @@ Done:
 - Rename sibling documents
 - Remove bad nodes
 
+Todo:
+- Remove soft-404 content
+
 ## Lint content
 
 Done:
@@ -39,8 +42,8 @@ Todo:
 
 ## Convert to PDF
 
-```wkhtmltopdf cover derpy.html toc --xsl-style-sheet default.xsl rarity.html twilight.html spike.html equestriadaily.pdf```
+Done:
+- Generate a catalog composed of documents in unspecified order
 
 Todo:
-- Generate a catalog composed of documents in unspecified order
 - Specify ordering of documents within the catalog **Department input required**
