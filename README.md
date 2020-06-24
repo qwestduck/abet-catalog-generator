@@ -13,6 +13,7 @@ Done:
 - Omit PDFs
 - Do not crawl external to catalog.olemiss.edu
 - Do not crawl catalog.olemiss.edu/(\d\d\d\d) (catalogs from previous years)
+- Crawl only if there is not a local corpus archive
 
 Todo:
 - 303 See Other should be symlinks
@@ -21,8 +22,6 @@ Todo:
 
 Done:
 - Rename sibling documents
-
-Todo:
 - Remove bad nodes
 
 ## Lint content
