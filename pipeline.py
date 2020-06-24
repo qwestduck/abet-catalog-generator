@@ -37,6 +37,7 @@ def lint_markup():
     print(f'cwd={os.getcwd()}')
 
     file_counter = 0
+    chunk_counter = 0
 
     env = Environment(loader=FileSystemLoader('../templates'))
     template = env.get_template('document.j2')
@@ -45,8 +46,9 @@ def lint_markup():
         for fileName in fileList:
             file_counter = file_counter + 1
             if file_counter == 100:
+                chunk_counter = chunk_counter + 1
                 file_counter = 0
-                print(f'Periodic render update: {dirName}/{fileName}')
+                print(f'Periodic render update: {dirName}/{fileName} ({chunk_counter}/{155} chunks)')
 
             with open(f'{dirName}/{fileName}') as f:
                 soup = BeautifulSoup(f, 'html.parser')
