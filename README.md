@@ -50,9 +50,9 @@ Table of content files reference one catalog.olemiss.edu document per line. You 
 
 Each line in TOC file represents a page from catalog.olemiss.edu that will be included in the generated PDF. The ordering of these lines coincides with the order that the pages from catalog.olemiss.edu will be rendered in the PDF document.
 
-A sample TOC file for a snapshot of the entirety of catalog.olemiss.edu can be viewed at ~/.config/corpus.toc.
+A sample TOC file for a snapshot of the entirety of catalog.olemiss.edu can be viewed at .config/corpus.toc.
 
-A sample user-modified TOC file formed by grepping corpus.toc for the string "engineering" can be viewed at ~/.config/engineering-sample.toc.
+A sample user-modified TOC file formed by grepping corpus.toc for the string "engineering" can be viewed at .config/engineering-sample.toc.
 
 The department or school will need to generate this TOC file before an appropriate document can be rendered.
 
