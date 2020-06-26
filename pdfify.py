@@ -15,7 +15,9 @@ if not os.path.exists('.config'):
 
 files = []
 
-if not os.path.exists('.config/corpus.toc') or True:
+# Generate TOC for complete corpus if it does not yet exist
+if not os.path.exists('.config/corpus.toc'):
+    print('Generating initial .config/corpus.toc')
     with open('.config/corpus.toc', 'w') as f:
         for dirName, subdirList, fileList in os.walk('.cache/catalog.olemiss.edu'):
             for fileName in fileList:
@@ -26,7 +28,14 @@ if not os.path.exists('.config/corpus.toc') or True:
                         stripped_dirName = f'{stripped_dirName}/'
                     f.write(f'{stripped_dirName}{fileName}\n')
 
-                    files.append(f'{stripped_dirName}{fileName}')
 
+# Build file list from TOC
+with open('.config/engineering-sample.toc') as f:
+    files = f.readlines()
+
+# Remove newline characters from filenames
+files = [l.strip('\n\r') for l in files]
+
+print('Generating document catalog.pdf. This will take on the order of minutes.')
 os.chdir('.cache/catalog.olemiss.edu')
 pdfkit.from_file(files, '../../catalog.pdf')
