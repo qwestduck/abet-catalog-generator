@@ -5,6 +5,11 @@
 - Self-referencing (no links to external content)
 - Printable in physical document form
 
+## Build dependencies
+
+### wkhtmltopdf
+The version in debian/ubuntu repos have reduced functionality (because it is compiled without the wkhtmltopdf QT patches), such as adding outlines, headers, footers, TOC etc. To use these options you should install the static binary from the wkhtmltopdf site.
+
 ## Spider catalog.olemiss.edu
 
 This is by far the best task to focus optimization efforts on. Naive approaches can take a week to retrieve a corpus.
