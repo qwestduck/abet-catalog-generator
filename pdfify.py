@@ -51,6 +51,10 @@ with open('.cache/cover.html', 'w') as f:
         """
     ))
 
+toc = {
+    'xsl-style-sheet': '../../.config/limitedDepth-toc.xsl'
+}
+
 options = {
     'page-size': 'Letter',
     'margin-top': '0.75in',
@@ -63,4 +67,4 @@ options = {
 
 print('Generating document catalog.pdf. This will take on the order of minutes.')
 os.chdir('.cache/catalog.olemiss.edu')
-pdfkit.from_file(files, '../../catalog.pdf', options=options, cover='../cover.html')
+pdfkit.from_file(files, '../../catalog.pdf', options=options, toc=toc, cover='../cover.html', cover_first=True)
